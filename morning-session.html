@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>車輪交換 午前タイムライン｜8:30〜12:00</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans JP"', '"Yu Gothic UI"', '"Meiryo"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @media print {
+      @page { size: A4 landscape; margin: 10mm; }
+      .no-print { display: none !important; }
+      body { border: none !important; }
+    }
+    .grid-swimlane {
+      display: grid;
+      grid-template-columns: 6.5rem 1.1fr 1.4fr 1.1fr 4.2fr 1.6fr 0.9fr;
+      gap: 3px;
+    }
+    .cell {
+      border-radius: 8px;
+      padding: 8px 10px;
+      min-height: 62px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body class="bg-slate-100 font-sans antialiased p-4 md:p-6 border-t-4 border-blue-500">
+
+  <div class="no-print flex justify-end mb-2">
+    <button onclick="window.print()" class="flex items-center gap-1.5 text-xs text-slate-400 hover:text-blue-500 transition-colors cursor-pointer">
+      <i data-lucide="download" class="w-3.5 h-3.5"></i>PDF（横）
+    </button>
+  </div>
+
+  <!-- ヘッダー -->
+  <div class="flex items-end gap-4 mb-4">
+    <div>
+      <div class="text-xs text-slate-400 mb-0.5">FS走行駆動車輪交換　ALP横浜　4月2日</div>
+      <h1 class="text-2xl font-black text-slate-800">午前タイムライン</h1>
+    </div>
+    <div class="flex items-center gap-2 mb-0.5">
+      <span class="text-xl font-black text-blue-600">8:30</span>
+      <i data-lucide="arrow-right" class="w-4 h-4 text-slate-400"></i>
+      <span class="text-xl font-black text-blue-600">12:00</span>
+    </div>
+    <!-- ゴール -->
+    <div class="ml-auto bg-green-600 text-white rounded-xl px-4 py-2 flex items-center gap-2">
+      <i data-lucide="flag" class="w-4 h-4 opacity-80"></i>
+      <span class="font-black text-sm">ゴール：バラし完了　→　清掃　→　休憩</span>
+    </div>
+  </div>
+
+  <!-- スイムレーン本体 -->
+  <div class="overflow-x-auto">
+    <div style="min-width: 780px;">
+
+      <!-- ===== ヘッダー行（横軸 = 時間・工程） ===== -->
+      <div class="grid-swimlane mb-1">
+
+        <!-- 空セル（左上角） -->
+        <div></div>
+
+        <!-- 工程1: 部品・工具準備 -->
+        <div class="cell bg-slate-600 text-white text-center">
+          <div class="text-xs font-bold opacity-70">8:30〜8:45</div>
+          <div class="flex items-center justify-center gap-1 mt-0.5">
+            <i data-lucide="package" class="w-3.5 h-3.5"></i>
+            <span class="text-xs font-black">部品・工具準備</span>
+          </div>
+        </div>
+
+        <!-- 工程2: 安全柵取り外し（警告あり） -->
+        <div class="cell bg-slate-600 text-white text-center relative">
+          <div class="text-xs font-bold opacity-70">8:45〜9:00</div>
+          <div class="flex items-center justify-center gap-1 mt-0.5">
+            <i data-lucide="shield-off" class="w-3.5 h-3.5"></i>
+            <span class="text-xs font-black">安全柵　取り外し</span>
+          </div>
+          <div class="flex justify-center gap-1 mt-1">
+            <span class="bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded-full flex items-center gap-0.5">
+              <i data-lucide="zap-off" class="w-2.5 h-2.5"></i>インパクト禁止
+            </span>
+          </div>
+        </div>
+
+        <!-- 工程3: ケガキ（順番厳守） -->
+        <div class="cell bg-amber-500 text-white text-center">
+          <div class="text-xs font-bold opacity-80">9:00〜9:15</div>
+          <div class="flex items-center justify-center gap-1 mt-0.5">
+            <i data-lucide="pencil-line" class="w-3.5 h-3.5"></i>
+            <span class="text-xs font-black">ケガキ</span>
+          </div>
+          <div class="mt-1 text-xs bg-white/20 rounded-full px-2 py-0.5 text-center">
+            ボルト緩め前に必ず
+          </div>
+        </div>
+
+        <!-- 工程4: 駆動車輪取り外し（メイン・幅広） -->
+        <div class="cell bg-orange-500 text-white text-center">
+          <div class="text-xs font-bold opacity-80">9:15〜11:30</div>
+          <div class="flex items-center justify-center gap-1.5 mt-0.5">
+            <i data-lucide="settings" class="w-4 h-4"></i>
+            <span class="font-black">駆動車輪　取り外し</span>
+          </div>
+          <div class="mt-1 text-xs bg-white/20 rounded-full px-3 py-0.5 inline-block">
+            ★ メイン作業
+          </div>
+        </div>
+
+        <!-- 工程5: 清掃 -->
+        <div class="cell bg-teal-600 text-white text-center">
+          <div class="text-xs font-bold opacity-70">11:30〜12:00</div>
+          <div class="flex items-center justify-center gap-1 mt-0.5">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            <span class="text-xs font-black">取外し箇所　清掃</span>
+          </div>
+        </div>
+
+        <!-- ゴール -->
+        <div class="cell bg-green-600 text-white text-center">
+          <div class="flex items-center justify-center gap-1">
+            <i data-lucide="coffee" class="w-4 h-4"></i>
+          </div>
+          <div class="font-black text-sm text-center">12:00<br>休憩</div>
+        </div>
+
+      </div><!-- /ヘッダー行 -->
+
+
+      <!-- ===== 3号機 セクション ===== -->
+      <div class="flex items-center gap-2 my-1.5 pl-1">
+        <div class="w-5 h-5 bg-blue-500 text-white rounded-full flex items-center justify-center font-black text-xs">3</div>
+        <span class="text-xs font-black text-blue-700">号機</span>
+        <div class="h-px flex-1 bg-blue-200"></div>
+      </div>
+
+      <!-- 中村（3号機 メイン） -->
+      <div class="grid-swimlane mb-1">
+        <!-- 名前ラベル -->
+        <div class="cell bg-blue-600 text-white">
+          <div class="text-xs font-bold opacity-80">3号機</div>
+          <div class="font-black text-sm">中村</div>
+          <span class="mt-0.5 text-xs bg-white/20 rounded-full px-1.5 py-0.5 self-start">メイン</span>
+        </div>
+        <!-- 部品・工具 -->
+        <div class="cell bg-blue-50 border border-blue-200">
+          <div class="text-xs text-blue-600 font-bold">確認</div>
+        </div>
+        <!-- 安全柵 -->
+        <div class="cell bg-blue-50 border border-blue-200">
+          <div class="text-xs text-blue-700 font-bold">取り外し</div>
+          <div class="text-xs text-slate-500 mt-0.5">⚠ 手工具のみ</div>
+        </div>
+        <!-- ケガキ -->
+        <div class="cell bg-amber-50 border-2 border-amber-400">
+          <div class="text-xs font-black text-amber-800">ケガキ実施</div>
+        </div>
+        <!-- 車輪取り外し -->
+        <div class="cell bg-blue-100 border-2 border-blue-500">
+          <div class="font-black text-sm text-blue-800">各部　取り外し</div>
+          <div class="text-xs text-blue-600 mt-0.5">ブレーカーOFF → 各部取外し</div>
+        </div>
+        <!-- 清掃 -->
+        <div class="cell bg-teal-50 border border-teal-200">
+          <div class="text-xs text-teal-700 font-bold">清掃</div>
+        </div>
+        <!-- 休憩 -->
+        <div class="cell bg-green-50 border border-green-200 items-center text-center">
+          <i data-lucide="coffee" class="w-5 h-5 text-green-500 mx-auto"></i>
+        </div>
+      </div>
+
+      <!-- 新井（3号機 サブ） -->
+      <div class="grid-swimlane mb-2">
+        <!-- 名前ラベル -->
+        <div class="cell bg-blue-300 text-white">
+          <div class="text-xs font-bold opacity-80">3号機</div>
+          <div class="font-black text-sm">新井</div>
+          <span class="mt-0.5 text-xs bg-white/30 rounded-full px-1.5 py-0.5 self-start">サブ</span>
+        </div>
+        <!-- 部品・工具 -->
+        <div class="cell bg-blue-50 border border-blue-100">
+          <div class="text-xs text-blue-700 font-bold">準備・整列</div>
+        </div>
+        <!-- 安全柵 -->
+        <div class="cell bg-blue-50 border border-blue-100">
+          <div class="text-xs text-blue-600 font-bold">取り外し補助</div>
+          <div class="text-xs text-amber-600 mt-0.5 flex items-start gap-0.5">
+            <i data-lucide="wrench" class="w-3 h-3 flex-shrink-0 mt-0.5"></i>
+            <span>なめ→ブラケット交換</span>
+          </div>
+        </div>
+        <!-- ケガキ -->
+        <div class="cell bg-slate-50 border border-slate-200">
+          <div class="text-xs text-slate-400">補佐・待機</div>
+        </div>
+        <!-- 車輪取り外し -->
+        <div class="cell bg-blue-50 border border-blue-200">
+          <div class="font-bold text-sm text-blue-700">工具手渡し・部品保管</div>
+          <div class="text-xs text-blue-500 mt-0.5">2人作業の補助</div>
+        </div>
+        <!-- 清掃 -->
+        <div class="cell bg-teal-50 border border-teal-100">
+          <div class="text-xs text-teal-700 font-bold">清掃</div>
+        </div>
+        <!-- 休憩 -->
+        <div class="cell bg-green-50 border border-green-100 items-center text-center">
+          <i data-lucide="coffee" class="w-5 h-5 text-green-400 mx-auto"></i>
+        </div>
+      </div>
+
+
+      <!-- ===== 8号機 セクション ===== -->
+      <div class="flex items-center gap-2 my-1.5 pl-1">
+        <div class="w-5 h-5 bg-green-600 text-white rounded-full flex items-center justify-center font-black text-xs">8</div>
+        <span class="text-xs font-black text-green-700">号機</span>
+        <div class="h-px flex-1 bg-green-200"></div>
+      </div>
+
+      <!-- 山内（8号機 メイン） -->
+      <div class="grid-swimlane mb-1">
+        <!-- 名前ラベル -->
+        <div class="cell bg-green-700 text-white">
+          <div class="text-xs font-bold opacity-80">8号機</div>
+          <div class="font-black text-sm">山内</div>
+          <span class="mt-0.5 text-xs bg-white/20 rounded-full px-1.5 py-0.5 self-start">メイン</span>
+        </div>
+        <!-- 部品・工具 -->
+        <div class="cell bg-green-50 border border-green-200">
+          <div class="text-xs text-green-700 font-bold">確認</div>
+        </div>
+        <!-- 安全柵 -->
+        <div class="cell bg-green-50 border border-green-200">
+          <div class="text-xs text-green-700 font-bold">取り外し</div>
+          <div class="text-xs text-slate-500 mt-0.5">⚠ 手工具のみ</div>
+        </div>
+        <!-- ケガキ -->
+        <div class="cell bg-amber-50 border-2 border-amber-400">
+          <div class="text-xs font-black text-amber-800">ケガキ実施</div>
+        </div>
+        <!-- 車輪取り外し -->
+        <div class="cell bg-green-100 border-2 border-green-600">
+          <div class="font-black text-sm text-green-800">各部　取り外し</div>
+          <div class="text-xs text-green-600 mt-0.5">ブレーカーOFF → 各部取外し</div>
+        </div>
+        <!-- 清掃 -->
+        <div class="cell bg-teal-50 border border-teal-200">
+          <div class="text-xs text-teal-700 font-bold">清掃</div>
+        </div>
+        <!-- 休憩 -->
+        <div class="cell bg-green-50 border border-green-200 items-center text-center">
+          <i data-lucide="coffee" class="w-5 h-5 text-green-500 mx-auto"></i>
+        </div>
+      </div>
+
+      <!-- 村松（8号機 サブ） -->
+      <div class="grid-swimlane">
+        <!-- 名前ラベル -->
+        <div class="cell bg-green-400 text-white">
+          <div class="text-xs font-bold opacity-80">8号機</div>
+          <div class="font-black text-sm">村松</div>
+          <span class="mt-0.5 text-xs bg-white/30 rounded-full px-1.5 py-0.5 self-start">サブ</span>
+        </div>
+        <!-- 部品・工具 -->
+        <div class="cell bg-green-50 border border-green-100">
+          <div class="text-xs text-green-700 font-bold">準備・整列</div>
+        </div>
+        <!-- 安全柵 -->
+        <div class="cell bg-green-50 border border-green-100">
+          <div class="text-xs text-green-600 font-bold">取り外し補助</div>
+          <div class="text-xs text-amber-600 mt-0.5 flex items-start gap-0.5">
+            <i data-lucide="wrench" class="w-3 h-3 flex-shrink-0 mt-0.5"></i>
+            <span>なめ→ブラケット交換</span>
+          </div>
+        </div>
+        <!-- ケガキ -->
+        <div class="cell bg-slate-50 border border-slate-200">
+          <div class="text-xs text-slate-400">補佐・待機</div>
+        </div>
+        <!-- 車輪取り外し -->
+        <div class="cell bg-green-50 border border-green-200">
+          <div class="font-bold text-sm text-green-700">工具手渡し・部品保管</div>
+          <div class="text-xs text-green-500 mt-0.5">2人作業の補助</div>
+        </div>
+        <!-- 清掃 -->
+        <div class="cell bg-teal-50 border border-teal-100">
+          <div class="text-xs text-teal-700 font-bold">清掃</div>
+        </div>
+        <!-- 休憩 -->
+        <div class="cell bg-green-50 border border-green-100 items-center text-center">
+          <i data-lucide="coffee" class="w-5 h-5 text-green-400 mx-auto"></i>
+        </div>
+      </div>
+
+    </div><!-- /min-width -->
+  </div><!-- /overflow-x-auto -->
+
+
+  <!-- 凡例・注意事項 -->
+  <div class="mt-4 flex flex-wrap gap-2 items-center">
+    <div class="flex items-center gap-1.5 text-xs text-slate-500">
+      <div class="w-3 h-3 rounded-full bg-red-500"></div>
+      <span class="bg-red-50 border border-red-300 px-2 py-0.5 rounded-full text-red-700 font-bold flex items-center gap-1">
+        <i data-lucide="zap-off" class="w-3 h-3"></i>インパクト使用禁止
+      </span>
+    </div>
+    <div class="flex items-center gap-1.5 text-xs">
+      <span class="bg-amber-50 border border-amber-300 px-2 py-0.5 rounded-full text-amber-800 font-bold flex items-center gap-1">
+        <i data-lucide="wrench" class="w-3 h-3"></i>ボルトなめ → ブラケット用意して交換
+      </span>
+    </div>
+    <div class="flex items-center gap-1.5 text-xs">
+      <span class="bg-amber-100 border border-amber-400 px-2 py-0.5 rounded-full text-amber-900 font-bold flex items-center gap-1">
+        <i data-lucide="pencil-line" class="w-3 h-3"></i>ケガキはボルト緩め前に必ず
+      </span>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

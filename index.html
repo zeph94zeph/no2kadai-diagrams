@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIに自分でフィードバックして図解が進化した話｜AIドリブンスクール</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Noto Sans JP"', '"Yu Gothic UI"', '"Meiryo"', 'sans-serif'] },
+        }
+      }
+    }
+  </script>
+  <style>
+    @media print { @page { size: A4; margin: 12mm; } .no-print { display: none !important; } }
+    .gradient-bg {
+      background: linear-gradient(135deg, #1e1b4b 0%, #4f46e5 50%, #7c3aed 100%);
+    }
+    .skill-file-card { border-left: 3px solid #4f46e5; }
+    /* 初期出力のスクリーンショット風縮小表示 */
+    .preview-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 2px solid #e2e8f0;
+      background: #f8fafc;
+    }
+    .preview-wrap iframe {
+      width: 900px;
+      height: 1100px;
+      border: none;
+      transform: scale(0.38);
+      transform-origin: top left;
+      pointer-events: none;
+    }
+    .preview-wrap .preview-height { height: 420px; }
+    .preview-badge {
+      position: absolute;
+      top: 8px; left: 8px;
+      background: rgba(15,23,42,0.75);
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 99px;
+      backdrop-filter: blur(4px);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 font-sans antialiased">
+
+  <!-- ===== HERO ===== -->
+  <div class="gradient-bg text-white px-6 py-10 md:py-14">
+    <div class="max-w-3xl mx-auto">
+      <div class="flex items-center gap-2 mb-4 text-indigo-200 text-sm font-bold">
+        <i data-lucide="bot" class="w-4 h-4"></i>
+        <span>AIドリブンスクール　制作事例</span>
+      </div>
+      <h1 class="text-3xl md:text-4xl font-black leading-tight mb-3">
+        AIに自分でフィードバックして<br>図解が進化した話
+      </h1>
+      <p class="text-indigo-200 text-base leading-relaxed max-w-xl">
+        施工管理の現場課題を起点に、Claudeに現場の文脈を教えるSKILLを設計。
+        生成した図解を自分で見て「これじゃない」と気づき、フィードバックしたことで
+        想定外のパターンが生まれるまでの記録。
+      </p>
+      <div class="flex flex-wrap gap-3 mt-6 text-sm">
+        <span class="bg-white/10 border border-white/20 rounded-full px-3 py-1 flex items-center gap-1.5">
+          <i data-lucide="hard-hat" class="w-3.5 h-3.5"></i>物流倉庫設備　施工管理
+        </span>
+        <span class="bg-white/10 border border-white/20 rounded-full px-3 py-1 flex items-center gap-1.5">
+          <i data-lucide="brain" class="w-3.5 h-3.5"></i>Claude SKILL設計
+        </span>
+        <span class="bg-white/10 border border-white/20 rounded-full px-3 py-1 flex items-center gap-1.5">
+          <i data-lucide="eye" class="w-3.5 h-3.5"></i>自分でフィードバック→進化
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-3xl mx-auto px-4 md:px-6 py-10 space-y-14">
+
+    <!-- ===== ACT 1: 課題 ===== -->
+    <section>
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-8 h-8 rounded-full bg-red-500 text-white flex items-center justify-center font-black text-sm flex-shrink-0">1</div>
+        <h2 class="text-lg font-black text-slate-700">そもそも、どんな現場の痛みがあったか</h2>
+      </div>
+
+      <div class="bg-red-50 border-2 border-red-300 rounded-2xl p-5 mb-4">
+        <div class="flex items-start gap-3">
+          <div class="w-10 h-10 bg-red-500 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
+            <i data-lucide="triangle-alert" class="w-5 h-5 text-white"></i>
+          </div>
+          <div>
+            <div class="font-black text-red-800 mb-1">2025年秋　モータ交換工事で大混乱</div>
+            <div class="text-sm text-red-700 leading-relaxed">
+              上司の指示が断片的・口頭のみ。チーム全員が
+              <span class="font-bold bg-red-200 px-1 rounded">「全体のゴール」「今どこにいるか」「自分の担当」</span>
+              を共有できないまま作業を開始。やり直しが頻発し、大幅残業・<span class="font-bold">納期1日遅れ</span>。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-200 p-5">
+        <div class="text-xs font-bold text-slate-400 mb-3 uppercase tracking-wider">混乱の構造</div>
+        <div class="flex items-center gap-2 flex-wrap">
+          <div class="bg-slate-100 rounded-xl px-3 py-2 text-center flex-1 min-w-24">
+            <i data-lucide="message-square-x" class="w-5 h-5 text-red-400 mx-auto mb-1"></i>
+            <div class="text-xs font-bold text-slate-600">断片的な口頭指示</div>
+          </div>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-slate-300 flex-shrink-0"></i>
+          <div class="bg-slate-100 rounded-xl px-3 py-2 text-center flex-1 min-w-24">
+            <i data-lucide="help-circle" class="w-5 h-5 text-amber-400 mx-auto mb-1"></i>
+            <div class="text-xs font-bold text-slate-600">ゴール・進捗が不明</div>
+          </div>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-slate-300 flex-shrink-0"></i>
+          <div class="bg-slate-100 rounded-xl px-3 py-2 text-center flex-1 min-w-24">
+            <i data-lucide="users" class="w-5 h-5 text-orange-400 mx-auto mb-1"></i>
+            <div class="text-xs font-bold text-slate-600">担当が曖昧</div>
+          </div>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-slate-300 flex-shrink-0"></i>
+          <div class="bg-red-100 rounded-xl px-3 py-2 text-center flex-1 min-w-24 border border-red-200">
+            <i data-lucide="rotate-ccw" class="w-5 h-5 text-red-500 mx-auto mb-1"></i>
+            <div class="text-xs font-bold text-red-700">やり直し多発</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ACT 2: ヒアリングとSKILL設計 ===== -->
+    <section>
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-8 h-8 rounded-full bg-indigo-500 text-white flex items-center justify-center font-black text-sm flex-shrink-0">2</div>
+        <h2 class="text-lg font-black text-slate-700">ヒアリングして SKILLを設計した</h2>
+      </div>
+
+      <div class="bg-indigo-50 border border-indigo-200 rounded-2xl p-4 mb-5 flex items-start gap-3">
+        <i data-lucide="lightbulb" class="w-5 h-5 text-indigo-500 flex-shrink-0 mt-0.5"></i>
+        <div>
+          <div class="font-black text-indigo-800 text-sm mb-0.5">SKILLとは？</div>
+          <div class="text-xs text-indigo-700 leading-relaxed">
+            Claudeに「この人の文脈・ルール・語彙」を事前に教えておくファイル群。
+            毎回プロンプトで説明しなくても、「<span class="font-bold">現場向けに図解して</span>」の一言だけでその人に最適化された出力が得られる。
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-5">
+        <div class="bg-white rounded-xl border border-slate-200 p-4">
+          <i data-lucide="hard-hat" class="w-5 h-5 text-slate-500 mb-2"></i>
+          <div class="text-xs font-black text-slate-600 mb-1">①　あなたの仕事は？</div>
+          <div class="text-xs text-slate-500">物流倉庫設備のメンテナンス施工管理。手順書・日程・現場作業まで幅広く。</div>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-4">
+          <i data-lucide="users" class="w-5 h-5 text-slate-500 mb-2"></i>
+          <div class="text-xs font-black text-slate-600 mb-1">②　誰が見る？</div>
+          <div class="text-xs text-slate-500">上司（多忙・断片的）、現場作業員（作業に不慣れ）、協力会社（前提知識なし）</div>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-4">
+          <i data-lucide="target" class="w-5 h-5 text-slate-500 mb-2"></i>
+          <div class="text-xs font-black text-slate-600 mb-1">③　どうなれば成功？</div>
+          <div class="text-xs text-slate-500">「次に自分が何をすべきか」を迷わず判断できる状態</div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-200 p-5">
+        <div class="text-xs font-bold text-slate-400 mb-4 uppercase tracking-wider">作成したSKILLファイル構成</div>
+        <div class="font-mono text-xs text-slate-600 bg-slate-50 rounded-xl p-4 mb-4 leading-relaxed">
+          .claude/skills/diagram-genba/<br>
+          ├── <span class="text-indigo-600 font-bold">SKILL.md</span>　　　　← AIへの指示書（パターン選択・設計原則）<br>
+          └── references/<br>
+          　　 ├── <span class="text-violet-600 font-bold">audience-profile.md</span>　← 読み手3種類のプロフィール<br>
+          　　 ├── <span class="text-violet-600 font-bold">content-patterns.md</span>　← 図解パターン集（HTML例付き）<br>
+          　　 └── <span class="text-violet-600 font-bold">term-dictionary.md</span>　　← 業界用語辞書
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div class="skill-file-card bg-indigo-50 rounded-xl p-3">
+            <div class="text-xs font-black text-indigo-700 mb-1">SKILL.md　の役割</div>
+            <div class="text-xs text-indigo-600">「どのパターンをいつ使うか」の判断基準。AIが最初に読む羅針盤。</div>
+          </div>
+          <div class="skill-file-card bg-violet-50 rounded-xl p-3">
+            <div class="text-xs font-black text-violet-700 mb-1">references/　の役割</div>
+            <div class="text-xs text-violet-600">具体的なHTMLテンプレート・読み手情報・語彙。SKILLの実装詳細。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ACT 3: 実践→実際の出力を見た ===== -->
+    <section>
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center font-black text-sm flex-shrink-0">3</div>
+        <h2 class="text-lg font-black text-slate-700">「現場向けにまとめて」→ 出力を見た</h2>
+      </div>
+
+      <!-- プロンプト -->
+      <div class="flex items-start gap-3 mb-4">
+        <div class="w-8 h-8 bg-slate-700 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+          <i data-lucide="user" class="w-4 h-4 text-white"></i>
+        </div>
+        <div>
+          <div class="bg-slate-700 text-white rounded-2xl rounded-tl-none px-4 py-3 text-sm max-w-md">
+            「この施工手順書だけではわかりづらい。現場向けにまとめて」
+          </div>
+          <div class="text-xs text-slate-400 mt-1 pl-1">ExcelのRAW手順書を添付してプロンプト</div>
+        </div>
+      </div>
+
+      <!-- 初期出力：iframe埋め込み（縮小表示） -->
+      <div class="mb-3">
+        <div class="text-xs font-bold text-slate-500 mb-2 pl-1 flex items-center gap-1.5">
+          <i data-lucide="bot" class="w-3.5 h-3.5 text-violet-500"></i>AIが生成した初版
+        </div>
+        <div class="preview-wrap">
+          <div class="preview-height">
+            <iframe src="fs-wheel-replacement.html" title="初版図解" scrolling="no"></iframe>
+          </div>
+          <div class="preview-badge">初版　生成物</div>
+          <!-- フェードアウト -->
+          <div style="position:absolute; bottom:0; left:0; right:0; height:80px; background: linear-gradient(to bottom, transparent, #f8fafc);"></div>
+        </div>
+        <div class="text-xs text-slate-400 mt-1 pl-1">↑ スクロールで全体を見ると、フェーズ別に詳細な役割カードが続く</div>
+      </div>
+
+      <!-- 自分で見た感想 -->
+      <div class="flex items-start gap-3 mt-5">
+        <div class="w-8 h-8 bg-slate-700 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+          <i data-lucide="user" class="w-4 h-4 text-white"></i>
+        </div>
+        <div>
+          <div class="bg-amber-50 border-2 border-amber-400 rounded-2xl rounded-tl-none px-4 py-3 max-w-lg">
+            <div class="font-black text-amber-800 mb-2 flex items-center gap-2">
+              <i data-lucide="eye" class="w-4 h-4"></i>実際に出力を見て気づいたこと
+            </div>
+            <div class="text-sm text-amber-800 font-bold mb-1">「後半部分の作業手順が細かすぎて図解になってない」</div>
+            <div class="text-xs text-amber-700 leading-relaxed">
+              フェーズごとに詳細な手順テキストが並んでいる。
+              これは<span class="font-bold">「手順書をHTMLにしただけ」</span>であって、
+              現場で一瞬見てわかる図解ではない。
+            </div>
+          </div>
+          <div class="mt-2 flex flex-wrap gap-1.5">
+            <span class="bg-amber-100 text-amber-700 text-xs font-bold px-2 py-0.5 rounded-full">手順書と変わらない</span>
+            <span class="bg-amber-100 text-amber-700 text-xs font-bold px-2 py-0.5 rounded-full">誰がいつ何をするかが一目でわからない</span>
+            <span class="bg-amber-100 text-amber-700 text-xs font-bold px-2 py-0.5 rounded-full">文字が多すぎる</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ギャップの可視化 -->
+      <div class="mt-5 bg-white border border-slate-200 rounded-2xl p-4">
+        <div class="text-xs font-bold text-slate-400 mb-3">欲しかったものとのギャップ</div>
+        <div class="grid grid-cols-2 gap-3 text-xs">
+          <div class="bg-red-50 rounded-xl p-3 border border-red-100">
+            <div class="font-black text-red-700 mb-1.5">❌ 生成されたもの</div>
+            <ul class="text-red-600 space-y-1">
+              <li>・フェーズ別の詳細手順リスト</li>
+              <li>・テキスト中心の構成</li>
+              <li>・「読む」ことで理解する形式</li>
+              <li>・縦スクロールで続く</li>
+            </ul>
+          </div>
+          <div class="bg-green-50 rounded-xl p-3 border border-green-100">
+            <div class="font-black text-green-700 mb-1.5">✅ 本当に必要なもの</div>
+            <ul class="text-green-600 space-y-1">
+              <li>・「誰がいつ何をするか」が一目で</li>
+              <li>・色・形・名前で伝わる</li>
+              <li>・「見た瞬間」に感覚でわかる</li>
+              <li>・一枚で全体が収まる</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ACT 4: SKILLを更新した ===== -->
+    <section>
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-8 h-8 rounded-full bg-violet-600 text-white flex items-center justify-center font-black text-sm flex-shrink-0">4</div>
+        <h2 class="text-lg font-black text-slate-700">フィードバックしてSKILLを更新した</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-white border border-slate-200 rounded-2xl p-4">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="font-mono text-xs bg-indigo-100 text-indigo-700 rounded px-1.5 py-0.5 font-bold">SKILL.md</span>
+            <span class="text-xs text-slate-400">設計原則を更新</span>
+          </div>
+          <div class="space-y-2 text-xs">
+            <div class="flex items-start gap-2">
+              <span class="text-green-500 font-bold flex-shrink-0 mt-0.5">追加</span>
+              <span class="text-slate-600">「文字より図・色・形で伝える（最重要）」を最上位ルールに</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-green-500 font-bold flex-shrink-0 mt-0.5">追加</span>
+              <span class="text-slate-600">1ブロック = 1行以内を設計基準として明示</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-green-500 font-bold flex-shrink-0 mt-0.5">追加</span>
+              <span class="text-slate-600">品質チェック「10秒で見てわかる」を必須条件に</span>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-2xl p-4">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="font-mono text-xs bg-violet-100 text-violet-700 rounded px-1.5 py-0.5 font-bold">content-patterns.md</span>
+            <span class="text-xs text-slate-400">パターン追加</span>
+          </div>
+          <div class="space-y-2 text-xs">
+            <div class="flex items-start gap-2">
+              <span class="text-green-500 font-bold flex-shrink-0 mt-0.5">追加</span>
+              <span class="text-slate-600">パターン0「ゴール＆進捗マップ」を最頻出パターンとして新設</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-green-500 font-bold flex-shrink-0 mt-0.5">追加</span>
+              <span class="text-slate-600">視覚優先の設計ルール表（全パターン共通の原則）</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-green-500 font-bold flex-shrink-0 mt-0.5">追加</span>
+              <span class="text-slate-600">audience-profile.md に実際の失敗事例を追記</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ACT 5: タイムライン発見 ===== -->
+    <section>
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-8 h-8 rounded-full bg-green-600 text-white flex items-center justify-center font-black text-sm flex-shrink-0">5</div>
+        <h2 class="text-lg font-black text-slate-700">「タイムラインにして」で想定外のパターンが生まれた</h2>
+      </div>
+
+      <div class="space-y-4 mb-5">
+        <!-- プロンプト -->
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 bg-slate-700 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+            <i data-lucide="user" class="w-4 h-4 text-white"></i>
+          </div>
+          <div class="bg-slate-700 text-white rounded-2xl rounded-tl-none px-4 py-3 max-w-md text-sm">
+            「横軸に作業ごとのタイムライン、縦軸に4人をそれぞれ置いて、横長の図解作成して」
+          </div>
+        </div>
+
+        <!-- 生成結果：実際のタイムライン縮小表示 -->
+        <div class="flex items-start gap-3 flex-row-reverse">
+          <div class="w-8 h-8 bg-violet-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+            <i data-lucide="bot" class="w-4 h-4 text-white"></i>
+          </div>
+          <div class="flex-1">
+            <div class="text-xs text-slate-400 mb-2 text-right pr-1 flex items-center justify-end gap-1">
+              <i data-lucide="bot" class="w-3.5 h-3.5 text-violet-400"></i>生成されたタイムライン版
+            </div>
+            <!-- タイムラインのミニチュア -->
+            <div class="bg-slate-100 rounded-2xl p-3 overflow-x-auto">
+              <div style="min-width: 520px;">
+                <!-- ヘッダー行 -->
+                <div class="grid text-xs mb-1" style="grid-template-columns: 4.5rem 1fr 1fr 1fr 3.5fr 1.2fr; gap: 2px;">
+                  <div></div>
+                  <div class="bg-slate-600 text-white rounded-lg px-2 py-2 text-center font-bold" style="font-size:10px">部品・工具<br><span class="opacity-70 font-normal">8:30〜</span></div>
+                  <div class="bg-slate-600 text-white rounded-lg px-2 py-2 text-center font-bold" style="font-size:10px">安全柵<br><span class="opacity-70 font-normal">8:45〜</span></div>
+                  <div class="bg-amber-500 text-white rounded-lg px-2 py-2 text-center font-bold" style="font-size:10px">ケガキ<br><span class="opacity-70 font-normal">9:00〜</span></div>
+                  <div class="bg-orange-500 text-white rounded-lg px-2 py-2 text-center font-bold" style="font-size:10px">★ 駆動車輪　取り外し<br><span class="opacity-70 font-normal">9:15〜11:30</span></div>
+                  <div class="bg-teal-600 text-white rounded-lg px-2 py-2 text-center font-bold" style="font-size:10px">清掃<br><span class="opacity-70 font-normal">〜12:00</span></div>
+                </div>
+                <!-- 3号機ラベル -->
+                <div class="flex items-center gap-1.5 my-1 pl-1">
+                  <div class="w-4 h-4 bg-blue-500 text-white rounded-full flex items-center justify-center font-black" style="font-size:9px">3</div>
+                  <span class="font-black text-blue-700" style="font-size:10px">号機</span>
+                  <div class="h-px flex-1 bg-blue-200"></div>
+                </div>
+                <!-- 中村行 -->
+                <div class="grid text-xs mb-0.5" style="grid-template-columns: 4.5rem 1fr 1fr 1fr 3.5fr 1.2fr; gap: 2px;">
+                  <div class="bg-blue-600 text-white rounded-lg px-2 py-2 font-bold" style="font-size:10px">中村<br><span class="opacity-70 text-xs">メイン</span></div>
+                  <div class="bg-blue-50 border border-blue-200 rounded-lg px-2 py-2 text-center text-blue-700 font-bold" style="font-size:10px">確認</div>
+                  <div class="bg-blue-50 border border-blue-200 rounded-lg px-2 py-2 text-center text-blue-700 font-bold" style="font-size:10px">取外し</div>
+                  <div class="bg-amber-50 border-2 border-amber-400 rounded-lg px-2 py-2 text-center text-amber-800 font-black" style="font-size:10px">実施</div>
+                  <div class="bg-blue-100 border-2 border-blue-500 rounded-lg px-2 py-2 text-center text-blue-800 font-black" style="font-size:10px">各部　取り外し</div>
+                  <div class="bg-teal-50 border border-teal-200 rounded-lg px-2 py-2 text-center text-teal-700 font-bold" style="font-size:10px">清掃</div>
+                </div>
+                <!-- 新井行 -->
+                <div class="grid text-xs mb-1" style="grid-template-columns: 4.5rem 1fr 1fr 1fr 3.5fr 1.2fr; gap: 2px;">
+                  <div class="bg-blue-300 text-white rounded-lg px-2 py-2 font-bold" style="font-size:10px">新井<br><span class="opacity-80 text-xs">サブ</span></div>
+                  <div class="bg-blue-50 border border-blue-100 rounded-lg px-2 py-2 text-center text-blue-600" style="font-size:10px">準備</div>
+                  <div class="bg-blue-50 border border-blue-100 rounded-lg px-2 py-2 text-center text-blue-600" style="font-size:10px">補助</div>
+                  <div class="bg-slate-50 border border-slate-200 rounded-lg px-2 py-2 text-center text-slate-400" style="font-size:10px">待機</div>
+                  <div class="bg-blue-50 border border-blue-200 rounded-lg px-2 py-2 text-center text-blue-600" style="font-size:10px">工具手渡し・部品保管</div>
+                  <div class="bg-teal-50 border border-teal-100 rounded-lg px-2 py-2 text-center text-teal-600" style="font-size:10px">清掃</div>
+                </div>
+                <!-- 8号機（省略） -->
+                <div class="flex items-center gap-1.5 my-1 pl-1">
+                  <div class="w-4 h-4 bg-green-600 text-white rounded-full flex items-center justify-center font-black" style="font-size:9px">8</div>
+                  <span class="font-black text-green-700" style="font-size:10px">号機（山内・村松）も同様の構造</span>
+                  <div class="h-px flex-1 bg-green-200"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 感想 -->
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 bg-slate-700 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+            <i data-lucide="user" class="w-4 h-4 text-white"></i>
+          </div>
+          <div class="bg-slate-700 text-white rounded-2xl rounded-tl-none px-4 py-3 text-sm max-w-sm">
+            「このほうが把握しやすいね」
+          </div>
+        </div>
+      </div>
+
+      <!-- Before/After 比較 -->
+      <div class="bg-white border border-slate-200 rounded-2xl p-4 mb-5">
+        <div class="text-xs font-bold text-slate-400 mb-3 uppercase tracking-wider">Before / After</div>
+        <div class="grid grid-cols-2 gap-3 text-xs">
+          <div>
+            <div class="font-black text-red-600 mb-2 flex items-center gap-1">
+              <i data-lucide="x-circle" class="w-3.5 h-3.5"></i>初版（フェーズ別詳細）
+            </div>
+            <div class="bg-red-50 rounded-xl p-2.5 border border-red-100 space-y-1 leading-relaxed text-red-700">
+              <div class="bg-white rounded px-2 py-1 font-bold border border-red-100">フェーズ1　準備</div>
+              <div class="bg-white rounded px-2 py-1 border border-red-100 pl-3">平野：書類準備・安全確認・客先連絡</div>
+              <div class="bg-white rounded px-2 py-1 border border-red-100 pl-3">中村：ブレーカーOFF・工具確認・対象機確認</div>
+              <div class="bg-white rounded px-2 py-1 border border-red-100 pl-3">山内：部品・資材搬入・工具並べ</div>
+              <div class="text-slate-400 pl-2">…（以下続く）</div>
+              <div class="bg-white rounded px-2 py-1 font-bold border border-red-100 mt-1">フェーズ2　取り外し</div>
+              <div class="text-slate-400 pl-2">…（また続く）</div>
+            </div>
+          </div>
+          <div>
+            <div class="font-black text-green-600 mb-2 flex items-center gap-1">
+              <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>改善版（タイムライン型）
+            </div>
+            <div class="bg-green-50 rounded-xl p-2.5 border border-green-100 leading-relaxed">
+              <div class="grid mb-1" style="grid-template-columns: 2rem 1fr 1.5fr 1fr; gap: 2px; font-size:9px;">
+                <div></div>
+                <div class="bg-slate-500 text-white rounded px-1 py-0.5 text-center">準備</div>
+                <div class="bg-orange-400 text-white rounded px-1 py-0.5 text-center">★取外し</div>
+                <div class="bg-teal-500 text-white rounded px-1 py-0.5 text-center">清掃</div>
+              </div>
+              <div class="grid mb-0.5" style="grid-template-columns: 2rem 1fr 1.5fr 1fr; gap: 2px; font-size:9px;">
+                <div class="bg-blue-600 text-white rounded px-1 py-1 font-bold text-center">中村</div>
+                <div class="bg-blue-50 border border-blue-200 rounded px-1 py-1 text-center text-blue-700 font-bold">確認</div>
+                <div class="bg-blue-100 border-2 border-blue-500 rounded px-1 py-1 text-center text-blue-800 font-black">各部取外し</div>
+                <div class="bg-teal-50 border border-teal-200 rounded px-1 py-1 text-center text-teal-700">清掃</div>
+              </div>
+              <div class="grid" style="grid-template-columns: 2rem 1fr 1.5fr 1fr; gap: 2px; font-size:9px;">
+                <div class="bg-blue-300 text-white rounded px-1 py-1 font-bold text-center">新井</div>
+                <div class="bg-blue-50 border border-blue-100 rounded px-1 py-1 text-center text-blue-600">準備</div>
+                <div class="bg-blue-50 border border-blue-200 rounded px-1 py-1 text-center text-blue-600">工具管理</div>
+                <div class="bg-teal-50 border border-teal-100 rounded px-1 py-1 text-center text-teal-600">清掃</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SKILLに反映 -->
+      <div class="bg-green-50 border border-green-200 rounded-2xl p-4">
+        <div class="flex items-center gap-2 mb-3">
+          <i data-lucide="plus-circle" class="w-4 h-4 text-green-600"></i>
+          <span class="text-xs font-black text-green-800">→ すぐSKILLに登録（パターン5）</span>
+        </div>
+        <div class="bg-white rounded-xl border border-green-100 p-3 font-mono text-xs text-slate-600 leading-relaxed">
+          | 「タイムラインにして」「横長で」「誰がいつ何をするか見せて」<br>
+          | → <span class="text-green-700 font-bold">パターン5: 横長スイムレーン（タイムライン×担当者）</span>
+        </div>
+        <div class="text-xs text-green-700 mt-2">次回から「タイムラインにして」の一言だけでこの形が自動生成される</div>
+      </div>
+    </section>
+
+    <!-- ===== まとめ ===== -->
+    <section>
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-8 h-8 rounded-full bg-slate-700 text-white flex items-center justify-center font-black text-sm flex-shrink-0">
+          <i data-lucide="sparkles" class="w-4 h-4"></i>
+        </div>
+        <h2 class="text-lg font-black text-slate-700">このサイクルから得た3つの学び</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-white border border-slate-200 rounded-2xl p-5">
+          <div class="w-10 h-10 bg-indigo-100 rounded-xl flex items-center justify-center mb-3">
+            <i data-lucide="repeat" class="w-5 h-5 text-indigo-600"></i>
+          </div>
+          <div class="font-black text-slate-800 mb-2">SKILLは使いながら育てる</div>
+          <div class="text-xs text-slate-500 leading-relaxed">完璧なSKILLは最初から作れない。実践 → 自分でフィードバック → 更新のループで、文脈が蓄積されていく。</div>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-2xl p-5">
+          <div class="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center mb-3">
+            <i data-lucide="eye" class="w-5 h-5 text-amber-600"></i>
+          </div>
+          <div class="font-black text-slate-800 mb-2">実際に見ることが一番のフィードバック</div>
+          <div class="text-xs text-slate-500 leading-relaxed">生成物を自分の目で見て「違う」と気づくことが、AIへの最良の指示になる。ヒアリング段階では気づけなかったことが見えてくる。</div>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-2xl p-5">
+          <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center mb-3">
+            <i data-lucide="key" class="w-5 h-5 text-green-600"></i>
+          </div>
+          <div class="font-black text-slate-800 mb-2">短い指示で意図が通るようになる</div>
+          <div class="text-xs text-slate-500 leading-relaxed">「タイムラインにして」6文字で、複雑な構造の図解が生成できる。SKILLとは「共通語彙」を育てるプロセス。</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="text-center py-6 border-t border-slate-200">
+      <div class="text-xs text-slate-400">AIドリブンスクール　制作事例</div>
+      <div class="text-xs text-slate-300 mt-1">diagram-genba SKILL　制作記録　2026</div>
+    </div>
+
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>
