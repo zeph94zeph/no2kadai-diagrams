@@ -201,6 +201,154 @@
         <h2 class="text-lg font-black text-slate-700">「現場向けにまとめて」→ 出力を見た</h2>
       </div>
 
+      <!-- ===== Excelモックアップ ===== -->
+      <div class="mb-5">
+        <div class="text-xs font-bold text-slate-500 mb-2 pl-1 flex items-center gap-2">
+          <i data-lucide="table" class="w-3.5 h-3.5 text-green-600"></i>
+          元ネタ：実際に渡された施工手順書（Excel）
+        </div>
+
+        <!-- Excelウィンドウ風ラッパー -->
+        <div class="rounded-xl overflow-hidden border border-slate-300 shadow-md">
+          <!-- タイトルバー -->
+          <div class="bg-slate-700 px-3 py-1.5 flex items-center gap-2">
+            <div class="flex gap-1.5">
+              <div class="w-2.5 h-2.5 rounded-full bg-red-400"></div>
+              <div class="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
+              <div class="w-2.5 h-2.5 rounded-full bg-green-400"></div>
+            </div>
+            <span class="text-xs text-slate-300 ml-2 font-mono">編集中RA作業手順書_2026年4月度FS走行駆動車輪交換(2台).xlsx</span>
+          </div>
+          <!-- リボン風 -->
+          <div class="bg-green-700 px-3 py-1 flex items-center gap-4">
+            <span class="text-xs text-green-100 font-bold">ファイル</span>
+            <span class="text-xs text-green-100">ホーム</span>
+            <span class="text-xs text-green-100">挿入</span>
+            <span class="text-xs text-green-100">ページレイアウト</span>
+            <span class="text-xs text-green-100">数式</span>
+            <span class="text-xs text-green-100">データ</span>
+          </div>
+          <!-- 数式バー -->
+          <div class="bg-white border-b border-slate-200 px-2 py-0.5 flex items-center gap-2">
+            <span class="text-xs text-slate-400 border border-slate-200 rounded px-1.5 py-0.5 font-mono">A1</span>
+            <span class="text-slate-300 text-sm">fx</span>
+            <span class="text-xs text-slate-600 font-mono">RA作業手順書　FS走行駆動車輪交換（2台）　2026年4月度</span>
+          </div>
+
+          <!-- スプレッドシート本体 -->
+          <div class="overflow-x-auto bg-white">
+            <table class="border-collapse" style="font-size: 10px; font-family: 'Meiryo', 'Yu Gothic', sans-serif;">
+              <!-- 列ヘッダー (A B C ...) -->
+              <thead>
+                <tr>
+                  <th class="bg-slate-100 border border-slate-300 w-7 text-center text-slate-400 font-normal sticky left-0 z-10"></th>
+                  <th class="bg-slate-100 border border-slate-300 text-center text-slate-500 font-normal px-4 py-0.5 min-w-8">A</th>
+                  <th class="bg-slate-100 border border-slate-300 text-center text-slate-500 font-normal px-6 py-0.5 min-w-16">B</th>
+                  <th class="bg-slate-100 border border-slate-300 text-center text-slate-500 font-normal px-10 py-0.5 min-w-32">C</th>
+                  <th class="bg-slate-100 border border-slate-300 text-center text-slate-500 font-normal px-8 py-0.5 min-w-52">D</th>
+                  <th class="bg-slate-100 border border-slate-300 text-center text-slate-500 font-normal px-8 py-0.5 min-w-40">E</th>
+                  <th class="bg-slate-100 border border-slate-300 text-center text-slate-500 font-normal px-8 py-0.5 min-w-48">F</th>
+                  <th class="bg-slate-100 border border-slate-300 text-center text-slate-500 font-normal px-4 py-0.5 min-w-20">G</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- タイトル行 -->
+                <tr>
+                  <td class="bg-slate-100 border border-slate-300 text-center text-slate-400 px-1 sticky left-0">1</td>
+                  <td colspan="7" class="border border-slate-300 bg-green-800 text-white font-bold px-2 py-1 text-center" style="font-size:11px">
+                    RA作業手順書　FS走行駆動車輪交換（2台）　2026年4月度　ALP横浜
+                  </td>
+                </tr>
+                <!-- ヘッダー行 -->
+                <tr class="bg-green-100">
+                  <td class="bg-slate-100 border border-slate-300 text-center text-slate-400 px-1 sticky left-0">2</td>
+                  <td class="border border-slate-300 font-bold text-center px-1 py-0.5 bg-green-200">No.</td>
+                  <td class="border border-slate-300 font-bold text-center px-1 py-0.5 bg-green-200">工程</td>
+                  <td class="border border-slate-300 font-bold text-center px-1 py-0.5 bg-green-200">作業内容</td>
+                  <td class="border border-slate-300 font-bold text-center px-1 py-0.5 bg-green-200">作業手順・詳細</td>
+                  <td class="border border-slate-300 font-bold text-center px-1 py-0.5 bg-green-200">使用工具・資材</td>
+                  <td class="border border-slate-300 font-bold text-center px-1 py-0.5 bg-green-200">注意事項・リスク</td>
+                  <td class="border border-slate-300 font-bold text-center px-1 py-0.5 bg-green-200">担当</td>
+                </tr>
+                <!-- フェーズ区切り -->
+                <tr>
+                  <td class="bg-slate-100 border border-slate-300 text-center text-slate-400 px-1 sticky left-0">3</td>
+                  <td colspan="7" class="border border-slate-300 bg-amber-100 font-bold px-2 py-0.5 text-amber-800">【準備作業】</td>
+                </tr>
+                <tr class="hover:bg-blue-50">
+                  <td class="bg-slate-100 border border-slate-300 text-center text-slate-400 px-1 sticky left-0">4</td>
+                  <td class="border border-slate-300 text-center px-1 py-0.5">1</td>
+                  <td class="border border-slate-300 px-1 py-0.5 whitespace-nowrap">部品確認</td>
+                  <td class="border border-slate-300 px-1 py-0.5 whitespace-nowrap">交換部品の員数確認</td>
+                  <td class="border border-slate-300 px-1 py-0.5" style="max-width:200px">走行駆動用車輪(3号機用・8号機用各2個)、Vベルト、ベアリング、ボルト・ナット類（M12×6本 M10×4本）の員数および型番照合を実施すること</td>
+                  <td class="border border-slate-300 px-1 py-0.5 whitespace-nowrap">部品リスト、現物</td>
+                  <td class="border border-slate-300 px-1 py-0.5">型番相違に注意。発注ミスがあれば即座に工事責任者へ報告し作業中断すること</td>
+                  <td class="border border-slate-300 text-center px-1 py-0.5 whitespace-nowrap">新井・村松</td>
+                </tr>
+                <tr class="hover:bg-blue-50">
+                  <td class="bg-slate-100 border border-slate-300 text-center text-slate-400 px-1 sticky left-0">5</td>
+                  <td class="border border-slate-300 text-center px-1 py-0.5">2</td>
+                  <td class="border border-slate-300 px-1 py-0.5 whitespace-nowrap">工具準備</td>
+                  <td class="border border-slate-300 px-1 py-0.5 whitespace-nowrap">使用工具の点検・整列</td>
+                  <td class="border border-slate-300 px-1 py-0.5">スパナ（M12・M10・M8）、トルクレンチ（締付けトルク確認用）、プーラー（ベアリング抜き取り用）、ハンマー、ウエス、潤滑剤を工具台に整列配置する</td>
+                  <td class="border border-slate-300 px-1 py-0.5 whitespace-nowrap">工具点検表</td>
+                  <td class="border border-slate-300 px-1 py-0.5">破損・欠品工具の使用禁止。トルクレンチは使用前に校正値を確認すること</td>
+                  <td class="border border-slate-300 text-center px-1 py-0.5 whitespace-nowrap">全員</td>
+                </tr>
+                <!-- フェーズ区切り2 -->
+                <tr>
+                  <td class="bg-slate-100 border border-slate-300 text-center text-slate-400 px-1 sticky left-0">6</td>
+                  <td colspan="7" class="border border-slate-300 bg-amber-100 font-bold px-2 py-0.5 text-amber-800">【安全措置】</td>
+                </tr>
+                <tr class="hover:bg-blue-50">
+                  <td class="bg-slate-100 border border-slate-300 text-center text-slate-400 px-1 sticky left-0">7</td>
+                  <td class="border border-slate-300 text-center px-1 py-0.5">3</td>
+                  <td class="border border-slate-300 px-1 py-0.5 whitespace-nowrap">ブレーカーOFF</td>
+                  <td class="border border-slate-300 px-1 py-0.5 whitespace-nowrap">動力源遮断・施錠</td>
+                  <td class="border border-slate-300 px-1 py-0.5">電源盤にて対象コンベア（3号機・8号機）の主幹ブレーカーをOFFにし、作業中の誤投入防止のため施錠を実施する。電圧測定器にて無電圧を確認後、作業開始許可を出す</td>
+                  <td class="border border-slate-300 px-1 py-0.5 whitespace-nowrap">検電器、施錠具、標識</td>
+                  <td class="border border-slate-300 px-1 py-0.5 bg-red-50 text-red-700">【重要】無電圧確認前の作業着手を厳禁とする。感電災害発生リスク大。施錠キーは工事責任者が保管</td>
+                  <td class="border border-slate-300 text-center px-1 py-0.5 whitespace-nowrap">平野</td>
+                </tr>
+                <tr class="hover:bg-blue-50">
+                  <td class="bg-slate-100 border border-slate-300 text-center text-slate-400 px-1 sticky left-0">8</td>
+                  <td class="border border-slate-300 text-center px-1 py-0.5">4</td>
+                  <td class="border border-slate-300 px-1 py-0.5 whitespace-nowrap">安全柵取り外し</td>
+                  <td class="border border-slate-300 px-1 py-0.5 whitespace-nowrap">保護柵の取り外し作業</td>
+                  <td class="border border-slate-300 px-1 py-0.5">コンベア周囲の安全柵（鉄製・M12ボルト×6箇所固定）を手工具を用いて取り外す。取り外した柵は所定の仮置き場に整理して置くこと。ボルト・ナットは保管袋に入れて紛失防止を図ること</td>
+                  <td class="border border-slate-300 px-1 py-0.5 whitespace-nowrap">スパナ(M12)、保管袋</td>
+                  <td class="border border-slate-300 px-1 py-0.5 bg-red-50 text-red-700">インパクトドライバー使用禁止（ボルトなめのリスク）。なめた場合はブラケットを用意して交換対応。無理な継続作業不可</td>
+                  <td class="border border-slate-300 text-center px-1 py-0.5 whitespace-nowrap">中村・山内</td>
+                </tr>
+                <tr class="hover:bg-blue-50">
+                  <td class="bg-slate-100 border border-slate-300 text-center text-slate-400 px-1 sticky left-0">9</td>
+                  <td class="border border-slate-300 text-center px-1 py-0.5">5</td>
+                  <td class="border border-slate-300 px-1 py-0.5 whitespace-nowrap">ケガキ</td>
+                  <td class="border border-slate-300 px-1 py-0.5 whitespace-nowrap">位置決めマーキング</td>
+                  <td class="border border-slate-300 px-1 py-0.5">ボルト緩め前に現状の取付位置をマーキングする。駆動軸、スペーサー、ブラケット各部の相互位置関係をケガキペンにて罫書きを入れること。再組み付け精度確保のため省略不可</td>
+                  <td class="border border-slate-300 px-1 py-0.5 whitespace-nowrap">ケガキペン、定規</td>
+                  <td class="border border-slate-300 px-1 py-0.5 bg-yellow-50 text-amber-800">必ずボルト緩め作業より前に実施すること。ケガキ省略によるミスアライメントが過去に発生している（要注意）</td>
+                  <td class="border border-slate-300 text-center px-1 py-0.5 whitespace-nowrap">中村・山内</td>
+                </tr>
+                <!-- 省略表示 -->
+                <tr class="bg-slate-50">
+                  <td class="bg-slate-100 border border-slate-300 text-center text-slate-400 px-1 sticky left-0">10</td>
+                  <td colspan="7" class="border border-slate-300 px-2 py-0.5 text-slate-400 italic text-center">… （以下、工程6〜24まで続く）　Vベルト取り外し / ベアリング抜き取り / 軸清掃 / 新品車輪取付 / トルク管理 / 試運転確認 …</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- シートタブ -->
+          <div class="bg-slate-100 border-t border-slate-300 px-2 py-1 flex items-center gap-1">
+            <div class="bg-white border border-slate-300 rounded-t px-3 py-0.5 text-xs font-bold text-green-700 border-b-white -mb-px">作業手順</div>
+            <div class="bg-slate-200 border border-slate-300 rounded-t px-3 py-0.5 text-xs text-slate-500">リスクアセスメント</div>
+            <div class="bg-slate-200 border border-slate-300 rounded-t px-3 py-0.5 text-xs text-slate-500">部品リスト</div>
+            <div class="bg-slate-200 border border-slate-300 rounded-t px-3 py-0.5 text-xs text-slate-500">工程表</div>
+          </div>
+        </div>
+        <div class="text-xs text-slate-400 mt-2 pl-1">↑ 全24工程・4シート構成。詳細な手順と注意事項が列に詰め込まれている</div>
+      </div>
+
       <!-- プロンプト -->
       <div class="flex items-start gap-3 mb-4">
         <div class="w-8 h-8 bg-slate-700 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
