@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>diagram-genba SKILL 変更タイムライン</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['"Noto Sans JP"', '"Meiryo"', 'sans-serif'] } } } }</script>
+  <style>
+    @media print { @page { size: A4 landscape; margin: 10mm; } .no-print { display: none !important; } }
+    .grid-timeline {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 6px;
+    }
+    /* 矢印コネクター */
+    .arrow-row {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 6px;
+    }
+  </style>
+</head>
+<body class="bg-slate-100 font-sans antialiased p-4 md:p-6">
+  <div class="overflow-x-auto">
+    <div style="min-width: 900px;">
+
+      <!-- ヘッダー -->
+      <div class="flex items-end justify-between mb-5">
+        <div>
+          <div class="text-xs text-slate-400 mb-0.5">diagram-genba SKILL</div>
+          <h1 class="text-2xl font-black text-slate-800">変更タイムライン</h1>
+        </div>
+        <div class="flex gap-2 text-xs flex-wrap justify-end">
+          <span class="flex items-center gap-1 bg-indigo-100 text-indigo-700 font-bold px-2 py-1 rounded-full"><span class="w-2 h-2 rounded-full bg-indigo-500 inline-block"></span>設計・作成</span>
+          <span class="flex items-center gap-1 bg-orange-100 text-orange-700 font-bold px-2 py-1 rounded-full"><span class="w-2 h-2 rounded-full bg-orange-500 inline-block"></span>実践・生成</span>
+          <span class="flex items-center gap-1 bg-amber-100 text-amber-700 font-bold px-2 py-1 rounded-full"><span class="w-2 h-2 rounded-full bg-amber-500 inline-block"></span>フィードバック</span>
+          <span class="flex items-center gap-1 bg-green-100 text-green-700 font-bold px-2 py-1 rounded-full"><span class="w-2 h-2 rounded-full bg-green-500 inline-block"></span>追加・登録</span>
+          <span class="flex items-center gap-1 bg-rose-100 text-rose-700 font-bold px-2 py-1 rounded-full"><span class="w-2 h-2 rounded-full bg-rose-500 inline-block"></span>削除・削ぎ落とし</span>
+        </div>
+      </div>
+
+      <!-- ===== 日付バー ===== -->
+      <div class="grid-timeline mb-1">
+        <!-- 3/22 ブロック（5列） -->
+        <div class="col-span-5 bg-indigo-900 text-white rounded-lg px-3 py-1.5 flex items-center gap-2">
+          <i data-lucide="calendar" class="w-3.5 h-3.5 opacity-70 flex-shrink-0"></i>
+          <span class="font-black text-sm">3月22日（土）</span>
+          <span class="text-xs opacity-60 ml-1">SKILLを作って最初の図解まで</span>
+        </div>
+        <!-- 3/27 ブロック（3列） -->
+        <div class="col-span-3 bg-rose-900 text-white rounded-lg px-3 py-1.5 flex items-center gap-2">
+          <i data-lucide="calendar" class="w-3.5 h-3.5 opacity-70 flex-shrink-0"></i>
+          <span class="font-black text-sm">3月27日（木）</span>
+          <span class="text-xs opacity-60 ml-1">読み手を削ぎ落とした日</span>
+        </div>
+      </div>
+
+      <!-- ===== ステップ番号行 ===== -->
+      <div class="grid-timeline mb-1">
+        <div class="text-center text-xs font-black text-slate-400">STEP 1</div>
+        <div class="text-center text-xs font-black text-slate-400">STEP 2</div>
+        <div class="text-center text-xs font-black text-slate-400">STEP 3</div>
+        <div class="text-center text-xs font-black text-slate-400">STEP 4</div>
+        <div class="text-center text-xs font-black text-slate-400">STEP 5</div>
+        <div class="text-center text-xs font-black text-slate-400">STEP 6</div>
+        <div class="text-center text-xs font-black text-slate-400">STEP 7</div>
+        <div class="text-center text-xs font-black text-slate-400">STEP 8</div>
+      </div>
+
+      <!-- ===== メインカード行 ===== -->
+      <div class="grid-timeline mb-1">
+
+        <!-- STEP1: SKILL設計 -->
+        <div class="bg-indigo-600 text-white rounded-xl p-3 flex flex-col gap-1.5 min-h-36">
+          <div class="flex items-center gap-1.5">
+            <i data-lucide="file-plus" class="w-4 h-4 opacity-80 flex-shrink-0"></i>
+            <span class="text-xs font-black">SKILL設計</span>
+          </div>
+          <div class="font-black text-sm leading-tight">ヒアリングから<br>3ファイル作成</div>
+          <div class="mt-auto space-y-1">
+            <div class="bg-white/20 rounded px-1.5 py-0.5 text-xs">SKILL.md</div>
+            <div class="bg-white/20 rounded px-1.5 py-0.5 text-xs">audience-profile.md</div>
+            <div class="bg-white/20 rounded px-1.5 py-0.5 text-xs">content-patterns.md</div>
+          </div>
+        </div>
+
+        <!-- STEP2: 初稿生成 -->
+        <div class="bg-orange-500 text-white rounded-xl p-3 flex flex-col gap-1.5 min-h-36">
+          <div class="flex items-center gap-1.5">
+            <i data-lucide="wand" class="w-4 h-4 opacity-80 flex-shrink-0"></i>
+            <span class="text-xs font-black">初稿生成</span>
+          </div>
+          <div class="font-black text-sm leading-tight">Excelから<br>図解を生成</div>
+          <div class="mt-auto space-y-1">
+            <div class="bg-white/20 rounded px-1.5 py-0.5 text-xs">フェーズ別</div>
+            <div class="bg-white/20 rounded px-1.5 py-0.5 text-xs">詳細手順リスト</div>
+            <div class="bg-white/20 rounded px-1.5 py-0.5 text-xs">縦スクロール型</div>
+          </div>
+        </div>
+
+        <!-- STEP3: FB①「細かすぎる」 -->
+        <div class="bg-amber-500 text-white rounded-xl p-3 flex flex-col gap-1.5 min-h-36">
+          <div class="flex items-center gap-1.5">
+            <i data-lucide="message-circle" class="w-4 h-4 opacity-80 flex-shrink-0"></i>
+            <span class="text-xs font-black">FB①</span>
+          </div>
+          <div class="font-black text-sm leading-tight">「細かすぎて<br>図解になってない」</div>
+          <div class="mt-auto">
+            <div class="bg-white/20 rounded px-1.5 py-0.5 text-xs">SKILL.md 更新</div>
+            <div class="text-xs mt-1 opacity-80">→ 視覚優先原則<br>→ 1ブロック1行</div>
+          </div>
+        </div>
+
+        <!-- STEP4: タイムライン生成 -->
+        <div class="bg-orange-500 text-white rounded-xl p-3 flex flex-col gap-1.5 min-h-36">
+          <div class="flex items-center gap-1.5">
+            <i data-lucide="layout-dashboard" class="w-4 h-4 opacity-80 flex-shrink-0"></i>
+            <span class="text-xs font-black">再生成</span>
+          </div>
+          <div class="font-black text-sm leading-tight">「タイムラインにして」<br>横長スイムレーン</div>
+          <div class="mt-auto space-y-1">
+            <div class="bg-white/20 rounded px-1.5 py-0.5 text-xs">横軸＝工程</div>
+            <div class="bg-white/20 rounded px-1.5 py-0.5 text-xs">縦軸＝担当者4人</div>
+          </div>
+        </div>
+
+        <!-- STEP5: パターン5登録 -->
+        <div class="bg-green-600 text-white rounded-xl p-3 flex flex-col gap-1.5 min-h-36">
+          <div class="flex items-center gap-1.5">
+            <i data-lucide="plus-circle" class="w-4 h-4 opacity-80 flex-shrink-0"></i>
+            <span class="text-xs font-black">パターン登録</span>
+          </div>
+          <div class="font-black text-sm leading-tight">パターン5を<br>SKILLに追加</div>
+          <div class="mt-auto">
+            <div class="bg-white/20 rounded px-1.5 py-0.5 text-xs">content-patterns.md</div>
+            <div class="text-xs mt-1 opacity-80">「タイムラインにして」<br>→ 自動生成可能に</div>
+          </div>
+        </div>
+
+        <!-- STEP6: 協力会社削除 -->
+        <div class="bg-rose-500 text-white rounded-xl p-3 flex flex-col gap-1.5 min-h-36">
+          <div class="flex items-center gap-1.5">
+            <i data-lucide="trash-2" class="w-4 h-4 opacity-80 flex-shrink-0"></i>
+            <span class="text-xs font-black">読み手削除①</span>
+          </div>
+          <div class="font-black text-sm leading-tight">協力会社担当を<br>削除</div>
+          <div class="mt-auto">
+            <div class="bg-white/20 rounded px-1.5 py-0.5 text-xs">SKILL.md</div>
+            <div class="bg-white/20 rounded px-1.5 py-0.5 text-xs">audience-profile.md</div>
+            <div class="text-xs mt-1 opacity-80">実際には使わないと判断</div>
+          </div>
+        </div>
+
+        <!-- STEP7: 上司削除 -->
+        <div class="bg-rose-500 text-white rounded-xl p-3 flex flex-col gap-1.5 min-h-36">
+          <div class="flex items-center gap-1.5">
+            <i data-lucide="trash-2" class="w-4 h-4 opacity-80 flex-shrink-0"></i>
+            <span class="text-xs font-black">読み手削除②</span>
+          </div>
+          <div class="font-black text-sm leading-tight">上司を削除<br>現場作業員のみに</div>
+          <div class="mt-auto">
+            <div class="bg-white/20 rounded px-1.5 py-0.5 text-xs">SKILL.md</div>
+            <div class="bg-white/20 rounded px-1.5 py-0.5 text-xs">audience-profile.md</div>
+            <div class="text-xs mt-1 opacity-80">読み手3→1種類</div>
+          </div>
+        </div>
+
+        <!-- STEP8: 1行に集約 -->
+        <div class="bg-slate-700 text-white rounded-xl p-3 flex flex-col gap-1.5 min-h-36 ring-2 ring-offset-2 ring-slate-500">
+          <div class="flex items-center gap-1.5">
+            <i data-lucide="sparkles" class="w-4 h-4 opacity-80 flex-shrink-0"></i>
+            <span class="text-xs font-black">現在の姿</span>
+          </div>
+          <div class="font-black text-sm leading-tight">読み手定義を<br>1行に集約</div>
+          <div class="mt-auto">
+            <div class="bg-white/10 rounded px-1.5 py-1 text-xs leading-relaxed border border-white/20">
+              現場作業員：全体像を一枚で、「今やること」が即わかる
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /grid -->
+
+      <!-- ===== コネクター矢印行 ===== -->
+      <div class="arrow-row mb-1">
+        <div class="flex items-center justify-end pr-1"><i data-lucide="arrow-right" class="w-4 h-4 text-slate-400"></i></div>
+        <div class="flex items-center justify-end pr-1"><i data-lucide="arrow-right" class="w-4 h-4 text-slate-400"></i></div>
+        <div class="flex items-center justify-end pr-1"><i data-lucide="arrow-right" class="w-4 h-4 text-slate-400"></i></div>
+        <div class="flex items-center justify-end pr-1"><i data-lucide="arrow-right" class="w-4 h-4 text-slate-400"></i></div>
+        <div class="flex items-center justify-end pr-1"><i data-lucide="arrow-right" class="w-4 h-4 text-slate-400"></i></div>
+        <div class="flex items-center justify-end pr-1"><i data-lucide="arrow-right" class="w-4 h-4 text-slate-400"></i></div>
+        <div class="flex items-center justify-end pr-1"><i data-lucide="arrow-right" class="w-4 h-4 text-slate-400"></i></div>
+        <div></div>
+      </div>
+
+      <!-- ===== 変更ファイル行 ===== -->
+      <div class="grid-timeline mb-1">
+        <div class="bg-indigo-50 border border-indigo-200 rounded-lg p-2 text-center">
+          <div class="text-xs text-indigo-600 font-bold">新規作成</div>
+          <div class="text-xs text-slate-500 mt-0.5">3ファイル</div>
+        </div>
+        <div class="bg-orange-50 border border-orange-200 rounded-lg p-2 text-center">
+          <div class="text-xs text-orange-600 font-bold">HTML生成</div>
+          <div class="text-xs text-slate-500 mt-0.5">fs-wheel-<br>replacement</div>
+        </div>
+        <div class="bg-amber-50 border border-amber-200 rounded-lg p-2 text-center">
+          <div class="text-xs text-amber-700 font-bold">SKILL更新</div>
+          <div class="text-xs text-slate-500 mt-0.5">設計原則<br>書き換え</div>
+        </div>
+        <div class="bg-orange-50 border border-orange-200 rounded-lg p-2 text-center">
+          <div class="text-xs text-orange-600 font-bold">HTML生成</div>
+          <div class="text-xs text-slate-500 mt-0.5">morning-<br>session</div>
+        </div>
+        <div class="bg-green-50 border border-green-200 rounded-lg p-2 text-center">
+          <div class="text-xs text-green-700 font-bold">SKILL追加</div>
+          <div class="text-xs text-slate-500 mt-0.5">content-<br>patterns +1</div>
+        </div>
+        <div class="bg-rose-50 border border-rose-200 rounded-lg p-2 text-center">
+          <div class="text-xs text-rose-600 font-bold">SKILL削除</div>
+          <div class="text-xs text-slate-500 mt-0.5">協力会社<br>セクション</div>
+        </div>
+        <div class="bg-rose-50 border border-rose-200 rounded-lg p-2 text-center">
+          <div class="text-xs text-rose-600 font-bold">SKILL削除</div>
+          <div class="text-xs text-slate-500 mt-0.5">上司<br>セクション</div>
+        </div>
+        <div class="bg-slate-100 border border-slate-300 rounded-lg p-2 text-center">
+          <div class="text-xs text-slate-600 font-bold">SKILL確定</div>
+          <div class="text-xs text-slate-500 mt-0.5">読み手1行<br>に集約</div>
+        </div>
+      </div>
+
+      <!-- ===== SKILLの状態変化（読み手） ===== -->
+      <div class="mt-4 bg-white rounded-2xl border border-slate-200 p-4">
+        <div class="text-xs font-bold text-slate-400 mb-3 uppercase tracking-wider flex items-center gap-2">
+          <i data-lucide="users" class="w-3.5 h-3.5"></i>読み手の変遷
+        </div>
+        <div class="flex items-center gap-2 flex-wrap">
+          <!-- 初期 -->
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs">
+            <div class="font-black text-slate-500 mb-1.5">初期設計</div>
+            <div class="space-y-1">
+              <div class="bg-slate-200 rounded px-2 py-0.5 text-slate-600">上司</div>
+              <div class="bg-indigo-100 rounded px-2 py-0.5 text-indigo-700 font-bold">現場作業員</div>
+              <div class="bg-slate-200 rounded px-2 py-0.5 text-slate-600">協力会社担当</div>
+            </div>
+          </div>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-slate-300 flex-shrink-0"></i>
+          <!-- 協力会社削除後 -->
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs">
+            <div class="font-black text-slate-500 mb-1.5">STEP 6 後</div>
+            <div class="space-y-1">
+              <div class="bg-slate-200 rounded px-2 py-0.5 text-slate-600">上司</div>
+              <div class="bg-indigo-100 rounded px-2 py-0.5 text-indigo-700 font-bold">現場作業員</div>
+              <div class="bg-red-100 rounded px-2 py-0.5 text-red-400 line-through">協力会社担当</div>
+            </div>
+          </div>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-slate-300 flex-shrink-0"></i>
+          <!-- 上司削除後 -->
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs">
+            <div class="font-black text-slate-500 mb-1.5">STEP 7 後</div>
+            <div class="space-y-1">
+              <div class="bg-red-100 rounded px-2 py-0.5 text-red-400 line-through">上司</div>
+              <div class="bg-indigo-100 rounded px-2 py-0.5 text-indigo-700 font-bold">現場作業員</div>
+              <div class="bg-red-100 rounded px-2 py-0.5 text-red-400 line-through">協力会社担当</div>
+            </div>
+          </div>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-slate-300 flex-shrink-0"></i>
+          <!-- 最終 -->
+          <div class="bg-indigo-50 border-2 border-indigo-400 rounded-xl p-3 text-xs">
+            <div class="font-black text-indigo-600 mb-1.5">現在（STEP 8）</div>
+            <div class="bg-indigo-600 text-white rounded px-3 py-1.5 font-black text-sm">
+              現場作業員のみ
+            </div>
+          </div>
+          <div class="ml-auto text-right">
+            <div class="text-2xl font-black text-rose-500">3 → 1</div>
+            <div class="text-xs text-slate-400">読み手の種類</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /min-width -->
+  </div><!-- /overflow-x-auto -->
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>
