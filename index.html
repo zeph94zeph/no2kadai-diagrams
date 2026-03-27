@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -625,16 +625,89 @@
       </div>
     </section>
 
+    <!-- ===== ACT 6: SKILLを削ぎ落とした ===== -->
+    <section>
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-8 h-8 rounded-full bg-slate-600 text-white flex items-center justify-center font-black text-sm flex-shrink-0">6</div>
+        <h2 class="text-lg font-black text-slate-700">使い続けるうちに「余計な部分」が見えてきた</h2>
+      </div>
+
+      <p class="text-sm text-slate-600 leading-relaxed mb-5">
+        SKILLを実際に使い始めてから、ヒアリング時点では気づかなかった「ズレ」が見えてきた。<br>
+        最初は読み手を<strong>3種類</strong>（上司・現場作業員・協力会社）で設計していたが、実際に図解を使うのは<strong>現場作業員向けだけ</strong>だった。
+      </p>
+
+      <!-- Before/After比較 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
+        <div class="bg-red-50 border border-red-200 rounded-2xl p-4">
+          <div class="text-xs font-black text-red-600 mb-3 flex items-center gap-1.5">
+            <i data-lucide="x-circle" class="w-3.5 h-3.5"></i>設計当初（SKILL作成時）
+          </div>
+          <div class="space-y-2 text-xs">
+            <div class="bg-white rounded-lg px-3 py-2 border border-red-100 flex items-center gap-2">
+              <i data-lucide="user" class="w-3.5 h-3.5 text-slate-400 flex-shrink-0"></i>
+              <span class="text-slate-600"><strong>上司</strong>：多忙で断片的な指示 → 全体像を一枚で</span>
+            </div>
+            <div class="bg-white rounded-lg px-3 py-2 border border-red-100 flex items-center gap-2">
+              <i data-lucide="hard-hat" class="w-3.5 h-3.5 text-slate-400 flex-shrink-0"></i>
+              <span class="text-slate-600"><strong>現場作業員</strong>：今やることが即わかる</span>
+            </div>
+            <div class="bg-white rounded-lg px-3 py-2 border border-red-100 flex items-center gap-2">
+              <i data-lucide="building-2" class="w-3.5 h-3.5 text-slate-400 flex-shrink-0"></i>
+              <span class="text-slate-600"><strong>協力会社担当</strong>：担当範囲が一目で</span>
+            </div>
+          </div>
+          <div class="mt-3 text-xs text-red-500 flex items-center gap-1">
+            <i data-lucide="alert-circle" class="w-3 h-3"></i>3種類全員に対応しようとして設計が複雑になっていた
+          </div>
+        </div>
+
+        <div class="bg-green-50 border border-green-200 rounded-2xl p-4">
+          <div class="text-xs font-black text-green-700 mb-3 flex items-center gap-1.5">
+            <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>実態に合わせて削ぎ落とした後
+          </div>
+          <div class="space-y-2 text-xs">
+            <div class="bg-white rounded-lg px-3 py-2.5 border-2 border-green-400 flex items-center gap-2">
+              <i data-lucide="hard-hat" class="w-4 h-4 text-green-600 flex-shrink-0"></i>
+              <span class="font-black text-green-800"><strong>現場作業員のみ</strong>：全体像を一枚で把握、「今やること」が太字・番号で即わかる</span>
+            </div>
+          </div>
+          <div class="mt-3 text-xs text-green-600 flex items-center gap-1">
+            <i data-lucide="sparkles" class="w-3 h-3"></i>1行に絞ったことでAIへの指示がより明確になった
+          </div>
+        </div>
+      </div>
+
+      <!-- 削除した内容の記録 -->
+      <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4">
+        <div class="text-xs font-bold text-slate-400 mb-3 uppercase tracking-wider">削除した内容</div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-2 text-xs">
+          <div class="flex items-start gap-2">
+            <span class="text-red-400 font-bold flex-shrink-0 mt-0.5">削除</span>
+            <span class="text-slate-500">SKILL.md：上司・協力会社向けの読み手定義</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-red-400 font-bold flex-shrink-0 mt-0.5">削除</span>
+            <span class="text-slate-500">audience-profile.md：読み手①上司・③協力会社のセクション</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-green-500 font-bold flex-shrink-0 mt-0.5">残した</span>
+            <span class="text-slate-500">現場作業員の定義・失敗事例・成功の定義</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ===== まとめ ===== -->
     <section>
       <div class="flex items-center gap-3 mb-6">
         <div class="w-8 h-8 rounded-full bg-slate-700 text-white flex items-center justify-center font-black text-sm flex-shrink-0">
           <i data-lucide="sparkles" class="w-4 h-4"></i>
         </div>
-        <h2 class="text-lg font-black text-slate-700">このサイクルから得た3つの学び</h2>
+        <h2 class="text-lg font-black text-slate-700">このサイクルから得た4つの学び</h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div class="bg-white border border-slate-200 rounded-2xl p-5">
           <div class="w-10 h-10 bg-indigo-100 rounded-xl flex items-center justify-center mb-3">
             <i data-lucide="repeat" class="w-5 h-5 text-indigo-600"></i>
@@ -655,6 +728,13 @@
           </div>
           <div class="font-black text-slate-800 mb-2">短い指示で意図が通るようになる</div>
           <div class="text-xs text-slate-500 leading-relaxed">「タイムラインにして」6文字で、複雑な構造の図解が生成できる。SKILLとは「共通語彙」を育てるプロセス。</div>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-2xl p-5">
+          <div class="w-10 h-10 bg-rose-100 rounded-xl flex items-center justify-center mb-3">
+            <i data-lucide="scissors" class="w-5 h-5 text-rose-600"></i>
+          </div>
+          <div class="font-black text-slate-800 mb-2">使うほど「削れる」ことがわかる</div>
+          <div class="text-xs text-slate-500 leading-relaxed">ヒアリング時に「必要そう」と思った読み手3種類が、実際には1種類で十分だった。使い続けることで、本当に必要な部分だけが残る。</div>
         </div>
       </div>
     </section>
